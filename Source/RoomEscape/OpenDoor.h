@@ -27,13 +27,13 @@ public:
 private:
 	
 	UPROPERTY(EditAnywhere) //< property for angle, shows in inspector
-	float OpenAngle = 90.0f;//<angle that the door will open
+	float OpenAngle = -90.0f;//<angle that the door will open
 
 	UPROPERTY(EditAnywhere)
 	ATriggerVolume* PressurePlate; //< Pressure plate to open door
 
 	UPROPERTY(EditAnywhere)
-	float DoorCloseDelay = 1.0f;
+	float DoorCloseDelay = 0.8f;
 
 	float LastDoorOpenTime;
 
