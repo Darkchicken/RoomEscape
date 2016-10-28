@@ -21,6 +21,12 @@ public:
 	// Called every frame
 	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
 
+private:
+	
+	UPROPERTY(VisibleAnywhere) //< property for angle, shows in inspector
+	float OpenAngle = 90.0f;//<angle that the door will open
+	UPROPERTY(EditAnywhere)
+	ATriggerVolume* PressurePlate; //< Pressure plate to open door
 		
 	
 };
