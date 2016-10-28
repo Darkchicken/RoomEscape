@@ -20,8 +20,9 @@ UOpenDoor::UOpenDoor()
 void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
-
-	
+	//finds the player pawn in the world
+	ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn();
+	UE_LOG(LogTemp, Warning, TEXT("ActorThatOpens is %s"), *(ActorThatOpens->GetName()) );
 }
 
 
