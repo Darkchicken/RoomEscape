@@ -12,7 +12,7 @@ UPositionReport::UPositionReport()
 	bWantsBeginPlay = true;
 	PrimaryComponentTick.bCanEverTick = true;
 
-	// ...
+	
 }
 
 
@@ -20,8 +20,12 @@ UPositionReport::UPositionReport()
 void UPositionReport::BeginPlay()
 {
 	Super::BeginPlay();
-
-	// ...
+	//stores object name as an FString
+	FString ObjectName = GetOwner()->GetName();
+	//stores position of object as an FString
+	FString ObjectPos = GetOwner()-> GetTransform().GetLocation().ToString();//"X = something, Y = something else";
+	//pass object name and position to log
+	UE_LOG(LogTemp, Warning, TEXT("%s is at %s"),*ObjectName, *ObjectPos);
 	
 }
 
