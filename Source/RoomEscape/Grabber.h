@@ -12,6 +12,7 @@ class ROOMESCAPE_API UGrabber : public UActorComponent
 	GENERATED_BODY()
 
 public:	
+
 	// Sets default values for this component's properties
 	UGrabber();
 
@@ -21,6 +22,8 @@ public:
 	// Called every frame
 	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
 
-		
+private:
+	// How far the player can reach in cm
+	float Reach = 100.0f;
 	
 };

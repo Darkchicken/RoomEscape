@@ -2,7 +2,8 @@
 
 #include "RoomEscape.h"
 #include "Grabber.h"
-
+//does nothing, but tells you that a variable is being changed and outputted
+#define OUT
 
 // Sets default values for this component's properties
 UGrabber::UGrabber()
@@ -31,6 +32,36 @@ void UGrabber::TickComponent( float DeltaTime, ELevelTick TickType, FActorCompon
 {
 	Super::TickComponent( DeltaTime, TickType, ThisTickFunction );
 
-	// ...
+	// get player viewpoint this tick
+	FVector PlayerViewPointLocation;
+	FRotator PlayerViewPointRotation;
+	
+	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(
+		OUT PlayerViewPointLocation,
+		OUT PlayerViewPointRotation
+	);
+	
+	/*UE_LOG(LogTemp, Warning, TEXT("PlayerViewPointLocation: %s, PlayerViewPointRotation: %s"), 
+			*PlayerViewPointLocation.ToString(), 
+			*PlayerViewPointRotation.ToString());*/
+
+	FVector LineTraceEnd = PlayerViewPointLocation + PlayerViewPointRotation.Vector()*Reach;
+	
+	//Draw a red trace in the world to visualize
+	DrawDebugLine(
+		GetWorld(),
+		PlayerViewPointLocation,
+		LineTraceEnd,
+		FColor(255, 0, 0),
+		false,
+		0.0f,
+		0,
+		10.0f
+	);
+	
+	
+	// raycast out to reach distance
+
+	// check what was hit
 }
 
