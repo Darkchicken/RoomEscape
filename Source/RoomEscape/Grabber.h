@@ -25,5 +25,7 @@ public:
 private:
 	// How far the player can reach in cm
 	float Reach = 100.0f;
+
+	UPhysicsHandleComponent* PhysicsHandle = nullptr;
 	
 };
