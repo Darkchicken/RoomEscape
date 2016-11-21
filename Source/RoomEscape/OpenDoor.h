@@ -5,7 +5,7 @@
 #include "Components/ActorComponent.h"
 #include "OpenDoor.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnOpenRequest);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FDoorEvent);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class ROOMESCAPE_API UOpenDoor : public UActorComponent
@@ -22,24 +22,22 @@ public:
 	// Called every frame
 	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
 
-	void OpenDoor();
-	void CloseDoor();
-
+	// Event to open door
 	UPROPERTY(BlueprintAssignable)
-	FOnOpenRequest OnOpenRequest;
+	FDoorEvent OnOpen;
+
+	// Event to close door
+	UPROPERTY(BlueprintAssignable)
+	FDoorEvent OnClose;
+
 
 private:
-	
-	UPROPERTY(EditAnywhere) //< property for angle, shows in inspector
-	float OpenAngle = -90.0f;//<angle that the door will open
 
 	UPROPERTY(EditAnywhere)
 	ATriggerVolume* PressurePlate = nullptr; //< Pressure plate to open door
 
 	UPROPERTY(EditAnywhere)
-	float DoorCloseDelay = 0.8f;
-
-	float LastDoorOpenTime;
+	float TriggerMass = 30.0f;
 
 	// The owning door
 	AActor* Owner = nullptr; //< The owning door
